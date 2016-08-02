@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name"><font color='OL'>OL</font><font color='Portal'>Portal</font></string>
+    <string name="sign_button">Регистрация</string>
+    <string name="notification">Нажимая "Регистрация", вы принимаете \n <a href="http://www.google.com/">условия пользовательского соглашения</a> OL Portal</string>
+    <string name="registration_info">Пройдите процедуру регистрации, в ходе которой вы получите уникальный OL-номер</string>
+    <string name="registration_code">Код подтверждения</string>
+    <string name="registration_info2">Введите номер своего телефона, на него придет СМС с кодом для подтверждения регистрации:</string>
+
+</resources>
