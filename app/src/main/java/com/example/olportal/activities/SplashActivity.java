@@ -1,4 +1,4 @@
-package com.example.olportal;
+package com.example.olportal.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +10,8 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.olportal.R;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.olportal.RegistrationActivity">
+    tools:context=".activities.RegistrationActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -72,8 +72,10 @@
                 android:background="@drawable/country_spinner" />
 
             <TextView
+                android:id="@+id/region_code"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="+7"
@@ -85,17 +87,20 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/number_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:backgroundTint="@color/background"
                     android:textSize="20dp"
+                    android:inputType="phone"
                     android:layout_marginBottom="5dp"
-                    android:inputType="number"
-                    tools:text="456 784 90 90" />
+                    tools:text="(###) ###-##-##" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <Button
+            android:id="@+id/send_number_button"
             style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
