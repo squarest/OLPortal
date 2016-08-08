@@ -31,43 +31,41 @@ import java.util.Map;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+// TODO: MVP
 public class RegistrationActivity extends AppCompatActivity {
-    private ArrayList<Country> countries = new ArrayList<Country>();
     private PhoneNumberFormattingTextWatcher textWatcher;
     private ActivityRegistrationBinding binding;
     private String number;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_registration);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
+        binding.setEnable(false);
         setSpinner();
         createToolbar();
         binding.numberButton.setOnClickListener(view ->
         {
-
             Map<String, String> map = new HashMap<>();
-            number=createNumberWithIso(binding.numberEditText);
-            map.put("phone",number);
+            number = createNumberWithIso(binding.numberEditText);
+            map.put("phone", number);
             ConnectionToServer.getInstance().smsSend(map)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(v ->
                     {
                         Toast.makeText(RegistrationActivity.this, "success", Toast.LENGTH_SHORT).show();
-                        binding.codeButton.setEnabled(true);
-                        binding.codeEditText.setEnabled(true);
+                        binding.setEnable(true);
                     }, throwable ->
                     {
                         Log.d("TAG", "error " + throwable.getMessage());
-                        binding.codeButton.setEnabled(false);
-                        binding.codeEditText.setEnabled(false);
+                        binding.setEnable(false);
                     });
         });
         binding.codeButton.setOnClickListener(v -> {
-
             Map<String, String> codeMap = new HashMap<>();
-            codeMap.put("phone",number);
-            codeMap.put("code",binding.codeEditText.getText().toString());
+            codeMap.put("phone", number);
+            codeMap.put("code", binding.codeEditText.getText().toString());
             ConnectionToServer.getInstance().smsVerify(codeMap)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -77,19 +75,20 @@ public class RegistrationActivity extends AppCompatActivity {
                     }, throwable -> Log.d("TAG", "error " + throwable.getMessage()));
         });
     }
-    private void createToolbar()
-    {
+
+    private void createToolbar() {
         Toolbar toolbar = binding.regToolbar;
         toolbar.setNavigationIcon(R.drawable.back);
-        toolbar.setNavigationOnClickListener(v->onBackPressed());
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
+
     private void setSpinner() {
         binding.countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Country c = (Country) binding.countrySpinner.getItemAtPosition(position);
                 binding.regionCode.setText(c.getCountryCodeStr());
-                EditText numberEditText=binding.numberEditText;
+                EditText numberEditText = binding.numberEditText;
                 numberEditText.removeTextChangedListener(textWatcher);
                 final String txt = numberEditText.getText().toString().replaceAll("\\D+", "");
                 numberEditText.getText().clear();
@@ -105,12 +104,12 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
         CountryAdapter mAdapter = new CountryAdapter(this);
-        loadCountries();
-        mAdapter.addAll(countries);
+        mAdapter.addAll(loadCountries());
         binding.countrySpinner.setAdapter(mAdapter);
     }
 
-    private void loadCountries() {
+    private ArrayList<Country> loadCountries() {
+        ArrayList<Country> countries = new ArrayList<Country>();
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(this.getApplicationContext().getAssets().open("countries.dat"), "UTF-8"));
@@ -135,16 +134,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         }
+        return countries;
     }
 
     private String createNumberWithIso(EditText numberEditText) {
-        String number = numberEditText.getText().toString();
-        char[] digits = number.toCharArray();
-        number = binding.regionCode.getText().subSequence(0, binding.regionCode.length()).toString();
-        for (char digit : digits) {
-            if (Character.isDigit(digit)) number += digit;
-        }
-        Log.d("TAG", "converted number " + number);
+        String number = binding.regionCode.getText().toString();
+        number+= numberEditText.getText().toString().replaceAll("\\D", "");
         return number;
     }
 }

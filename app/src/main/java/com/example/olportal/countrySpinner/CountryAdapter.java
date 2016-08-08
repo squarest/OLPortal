@@ -16,6 +16,7 @@
 package com.example.olportal.countrySpinner;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.olportal.R;
+import com.example.olportal.databinding.ActivityRegistrationBinding;
+import com.example.olportal.databinding.ItemCountryDropBinding;
 
 public class CountryAdapter extends ArrayAdapter<Country> {
-
     private LayoutInflater mLayoutInflater;
 
     public CountryAdapter(Context context) {
@@ -35,24 +37,15 @@ public class CountryAdapter extends ArrayAdapter<Country> {
     }
 
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder holder;
-        if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_country_drop, parent, false);
-            holder = new ViewHolder();
-            holder.mImageView = (ImageView) convertView.findViewById(R.id.image);
-            holder.mNameView = (TextView) convertView.findViewById(R.id.country_name);
-            holder.mCodeView = (TextView) convertView.findViewById(R.id.country_code);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
+        ItemCountryDropBinding binding =
+                DataBindingUtil.inflate(mLayoutInflater, R.layout.item_country_drop, parent, false);
         Country country = getItem(position);
         if (country != null) {
-            holder.mNameView.setText(country.getName());
-            holder.mCodeView.setText(country.getCountryCodeStr());
-            holder.mImageView.setImageResource(country.getResId());
+            binding.countryName.setText(country.getName());
+            binding.countryCode.setText(country.getCountryCodeStr());
+            binding.image.setImageResource(country.getResId());
         }
-        return convertView;
+        return binding.getRoot();
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -63,11 +56,5 @@ public class CountryAdapter extends ArrayAdapter<Country> {
         ImageView imageView = (ImageView) convertView.findViewById(R.id.image);
         imageView.setImageResource(country.getResId());
         return convertView;
-    }
-
-    private static class ViewHolder {
-        public ImageView mImageView;
-        public TextView mNameView;
-        public TextView mCodeView;
     }
 }

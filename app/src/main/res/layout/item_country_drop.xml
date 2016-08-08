@@ -1,5 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:padding="10dp"
@@ -14,7 +16,7 @@
         android:layout_height="32dp" />
 
     <TextView
-        android:id="@+id/country_name"
+        android:id="@+id/countryName"
         android:padding="5dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
@@ -23,7 +25,7 @@
 
 
     <TextView
-        android:id="@+id/country_code"
+        android:id="@+id/countryCode"
         android:padding="5dp"
         android:layout_weight="1.5"
         tools:text="+7"
@@ -31,3 +33,4 @@
         android:layout_height="match_parent" />
 
 </LinearLayout>
+</layout>
