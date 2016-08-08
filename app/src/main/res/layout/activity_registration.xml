@@ -1,152 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="enable"
-            type="boolean"/>
+            type="boolean" />
     </data>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.registration.RegistrationActivity">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.8"
-        android:background="@color/background">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/regToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="40dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/reg_1" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="65dp"
-            android:layout_marginRight="65dp"
-            android:text="@string/registration_info"
-            android:textAlignment="center"
-            android:textColor="#fff"
-            android:textSize="16dp" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="#fff"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".activities.registration.RegistrationActivity">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200px"
-            android:background="@color/light_blue"
-            android:gravity="center"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:text="@string/registration_info2"
-            android:textColor="#000" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1.8"
+            android:background="@color/background">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/regToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="40dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/reg_1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginRight="65dp"
+                android:text="@string/registration_info"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1.2"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="5dp">
-
-            <Spinner
-                android:id="@+id/countrySpinner"
-                android:layout_width="45dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/country_spinner" />
+            android:layout_weight="1"
+            android:background="#fff"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/regionCode"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="+7"
-                android:textColor="@color/background"
-                android:textSize="20dp" />
-
-
-            <EditText
-                android:id="@+id/numberEditText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/background"
-                android:gravity="center_vertical"
-                android:inputType="phone"
-                android:textSize="20dp"
-                tools:text="(###) ###-##-##" />
-        </LinearLayout>
+                android:layout_height="80dp"
+                android:background="@color/light_blue"
+                android:gravity="center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/registration_info2"
+                android:textColor="#000" />
 
-        <Button
-            android:id="@+id/numberButton"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Отправить" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="30dp"
-            android:background="@color/grey_line" />
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/codeEditText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_weight="1.35"
-                android:gravity="bottom"
+                android:layout_weight="1.2"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/countrySpinner"
+                    android:layout_width="45dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/country_spinner" />
+
+                <TextView
+                    android:id="@+id/regionCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="+7"
+                    android:textColor="@color/background"
+                    android:textSize="20dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/numberTextLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    app:errorEnabled="true">
+
+                    <EditText
+                        android:id="@+id/numberEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/background"
+                        android:inputType="phone"
+                        android:textSize="20dp"
+                        tools:text="(###) ###-##-##" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/numberButton"
+                style="@style/button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="Отправить" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/grey_line" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/codeTextLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/codeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:enabled="@{enable}"
+                    android:gravity="center_vertical"
+                    android:hint="@string/registration_code" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/codeButton"
+                style="@style/button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:enabled="@{enable}"
-                android:hint="@string/registration_code"
-                android:paddingBottom="15dp" />
+                android:text="Продолжить" />
+        </LinearLayout>
 
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/codeButton"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:enabled="@{enable}"
-            android:text="Продолжить" />
     </LinearLayout>
-
-</LinearLayout>
 </layout>

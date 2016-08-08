@@ -8,4 +8,8 @@ public interface IRegistrationView {
     void numberIsValid(boolean enabled);
     void showProgress();
     void hideProgress();
+    void setNumberError();
+    void setCodeError();
+    void dismissNumberError();
+    void dismissCodeError();
 }

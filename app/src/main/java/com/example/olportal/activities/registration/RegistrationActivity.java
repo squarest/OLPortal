@@ -131,4 +131,23 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     public void hideProgress() {
         progressDialog.dismiss();
     }
+
+    @Override
+    public void setNumberError() {
+        binding.numberTextLayout.setError("Номер уже занят");
+    }
+
+    @Override
+    public void dismissNumberError() {
+        binding.numberTextLayout.setError("");
+    }
+    @Override
+    public void setCodeError() {
+        binding.codeTextLayout.setError("Неверный код");
+    }
+
+    @Override
+    public void dismissCodeError() {
+        binding.codeTextLayout.setError("");
+    }
 }

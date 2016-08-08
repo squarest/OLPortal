@@ -7,6 +7,7 @@ import com.example.olportal.ConnectionToServer;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.adapter.rxjava.HttpException;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -33,8 +34,13 @@ public class RegistrationPresenter implements IRegistrationPresenter {
                         v -> {
                             registrationView.showMessage("success");
                             registrationView.numberIsValid(true);
+                            registrationView.dismissNumberError();
                         },
                         throwable -> {
+                            HttpException httpException = (HttpException)throwable;
+                            if(httpException.code()==409) {
+                                registrationView.setNumberError();
+                            }
                             registrationView.showMessage("error");
                             registrationView.numberIsValid(false);
                             registrationView.hideProgress();
@@ -54,8 +60,13 @@ public class RegistrationPresenter implements IRegistrationPresenter {
                 .subscribe(
                         v1 -> {
                             registrationView.showMessage("success");
+                            registrationView.dismissCodeError();
                         },
                         throwable -> {
+                            HttpException httpException = (HttpException)throwable;
+                            if(httpException.code()==404) {
+                                registrationView.setCodeError();
+                            }
                             Log.d("TAG", "error " + throwable.getMessage());
                             registrationView.showMessage("error");
                             registrationView.hideProgress();
