@@ -9,4 +9,6 @@
     <color name="links">#0ebdbd</color>
     <color name="light_blue">#dcf5f6</color>
     <color name="grey_line">#d9d9d9</color>
+    <color name="grey_edit_text">#dedede</color>
+    <color name="grey_text">#797979</color>
 </resources>
