@@ -1,21 +1,17 @@
-package com.example.olportal.activities;
+package com.example.olportal.activities.registration;
 
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.olportal.ConnectionToServer;
 import com.example.olportal.R;
 import com.example.olportal.countrySpinner.Country;
 import com.example.olportal.countrySpinner.CountryAdapter;
@@ -25,54 +21,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-// TODO: MVP
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity implements IRegistrationView {
     private PhoneNumberFormattingTextWatcher textWatcher;
     private ActivityRegistrationBinding binding;
     private String number;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
         binding.setEnable(false);
+        RegistrationPresenter presenter = new RegistrationPresenter(this);
         setSpinner();
         createToolbar();
-        binding.numberButton.setOnClickListener(view ->
-        {
-            Map<String, String> map = new HashMap<>();
+        binding.numberButton.setOnClickListener(view -> {
             number = createNumberWithIso(binding.numberEditText);
-            map.put("phone", number);
-            ConnectionToServer.getInstance().smsSend(map)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(v ->
-                    {
-                        Toast.makeText(RegistrationActivity.this, "success", Toast.LENGTH_SHORT).show();
-                        binding.setEnable(true);
-                    }, throwable ->
-                    {
-                        Log.d("TAG", "error " + throwable.getMessage());
-                        binding.setEnable(false);
-                    });
+            presenter.sendSms(number);
+
         });
         binding.codeButton.setOnClickListener(v -> {
-            Map<String, String> codeMap = new HashMap<>();
-            codeMap.put("phone", number);
-            codeMap.put("code", binding.codeEditText.getText().toString());
-            ConnectionToServer.getInstance().smsVerify(codeMap)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(v1 ->
-                    {
-                        Toast.makeText(RegistrationActivity.this, "code success", Toast.LENGTH_SHORT).show();
-                    }, throwable -> Log.d("TAG", "error " + throwable.getMessage()));
+            presenter.verifyNumber(number, binding.codeEditText.getText().toString());
         });
     }
 
@@ -118,19 +88,18 @@ public class RegistrationActivity extends AppCompatActivity {
             String line;
             int i = 0;
             while ((line = reader.readLine()) != null) {
-                //process line
                 Country c = new Country(this, line);
                 countries.add(c);
                 i++;
             }
         } catch (IOException e) {
-            //log the exception
+            Log.d("TAG", e.getMessage());
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    //log the exception
+                    Log.d("TAG", e.getMessage());
                 }
             }
         }
@@ -139,7 +108,27 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private String createNumberWithIso(EditText numberEditText) {
         String number = binding.regionCode.getText().toString();
-        number+= numberEditText.getText().toString().replaceAll("\\D", "");
+        number += numberEditText.getText().toString().replaceAll("\\D", "");
         return number;
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(RegistrationActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void numberIsValid(boolean enabled) {
+        binding.setEnable(enabled);
+    }
+
+    @Override
+    public void showProgress() {
+        progressDialog=ProgressDialog.show(this,"Идет отправка","Пожалуйста подождите",false,false);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressDialog.dismiss();
     }
 }

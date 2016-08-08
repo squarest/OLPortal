@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.olportal.R;
+import com.example.olportal.activities.registration.RegistrationActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
