@@ -1,7 +1,9 @@
 package com.example.olportal.activities.registration;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.olportal.R;
+import com.example.olportal.User;
+import com.example.olportal.activities.password.PasswordActivity;
 import com.example.olportal.countrySpinner.Country;
 import com.example.olportal.countrySpinner.CountryAdapter;
 import com.example.olportal.databinding.ActivityRegistrationBinding;
@@ -27,6 +31,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     private ActivityRegistrationBinding binding;
     private String number;
     private ProgressDialog progressDialog;
+    public final static String USER_EXTRA="user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
 
     private void createToolbar() {
         Toolbar toolbar = binding.regToolbar;
+        toolbar.setTitle("Регистрация");
+        toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
@@ -124,7 +131,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
 
     @Override
     public void showProgress() {
-        progressDialog=ProgressDialog.show(this,"Идет отправка","Пожалуйста подождите",false,false);
+        progressDialog = ProgressDialog.show(this, "Идет отправка", "Пожалуйста подождите", false, false);
     }
 
     @Override
@@ -141,6 +148,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     public void dismissNumberError() {
         binding.numberTextLayout.setError("");
     }
+
     @Override
     public void setCodeError() {
         binding.codeTextLayout.setError("Неверный код");
@@ -150,4 +158,13 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     public void dismissCodeError() {
         binding.codeTextLayout.setError("");
     }
+
+    @Override
+    public void goToNextActivity(User user) {
+        Intent intent = new Intent(RegistrationActivity.this, PasswordActivity.class);
+        intent.putExtra(USER_EXTRA,user);
+        startActivity(intent);
+
+    }
+
 }

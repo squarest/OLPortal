@@ -9,7 +9,11 @@ import rx.Observable;
 
 public interface Api {
     @POST("sms/send/")
-    Observable<Void> smsSend(@Body Map<String,String> phone);
+    Observable<Void> smsSend(@Body Map<String, String> phone);
+
     @POST("sms/verify/")
-    Observable<Void> smsVerify(@Body Map<String,String> phone);
+    Observable<Void> smsVerify(@Body Map<String, String> phone);
+
+    @POST("user/")
+    Observable<User> register(@Body User user);
 }

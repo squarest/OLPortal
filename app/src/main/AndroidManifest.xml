@@ -20,7 +20,10 @@
         <activity
             android:name=".activities.registration.RegistrationActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activities.PasswordActivity"></activity>
+        <activity
+            android:name=".activities.password.PasswordActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".activities.CongratulationsActivity"></activity>
     </application>
 
 </manifest>

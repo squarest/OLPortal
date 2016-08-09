@@ -1,5 +1,7 @@
 package com.example.olportal.activities.registration;
 
+import com.example.olportal.User;
+
 /**
  * Created by kravchenko on 08/08/16.
  */
@@ -12,4 +14,5 @@ public interface IRegistrationView {
     void setCodeError();
     void dismissNumberError();
     void dismissCodeError();
+    void goToNextActivity(User user);
 }
