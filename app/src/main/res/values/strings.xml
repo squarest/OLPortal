@@ -5,5 +5,7 @@
     <string name="registration_info">Пройдите процедуру регистрации, в ходе которой вы получите уникальный OL-номер</string>
     <string name="registration_code">Код подтверждения</string>
     <string name="registration_info2">Введите номер своего телефона, на него придет СМС с кодом для подтверждения регистрации:</string>
+    <string name="congratulations">Поздравляем вас!</string>
+    <string name="congratulations_2">Вы стали участником глобальной системы OL Portal</string>
 
 </resources>
