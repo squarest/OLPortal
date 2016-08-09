@@ -3,6 +3,7 @@ package com.example.olportal.activities.registration;
 import android.util.Log;
 
 import com.example.olportal.ConnectionToServer;
+import com.example.olportal.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,9 +38,13 @@ public class RegistrationPresenter implements IRegistrationPresenter {
                             registrationView.dismissNumberError();
                         },
                         throwable -> {
-                            HttpException httpException = (HttpException)throwable;
-                            if(httpException.code()==409) {
-                                registrationView.setNumberError();
+                            try {
+                                HttpException httpException = (HttpException) throwable;
+                                if (httpException.code() == 409) {
+                                    registrationView.setNumberError();
+                                }
+                            } catch (Exception ex) {
+                                Log.d("TAG", ex.getMessage());
                             }
                             registrationView.showMessage("error");
                             registrationView.numberIsValid(false);
@@ -61,11 +66,19 @@ public class RegistrationPresenter implements IRegistrationPresenter {
                         v1 -> {
                             registrationView.showMessage("success");
                             registrationView.dismissCodeError();
+                            User user = new User();
+                            user.phone = number;
+                            user.code = code;
+                            registrationView.goToNextActivity(user);
                         },
                         throwable -> {
-                            HttpException httpException = (HttpException)throwable;
-                            if(httpException.code()==404) {
-                                registrationView.setCodeError();
+                            try {
+                                HttpException httpException = (HttpException) throwable;
+                                if (httpException.code() == 404) {
+                                    registrationView.setNumberError();
+                                }
+                            } catch (Exception ex) {
+                                Log.d("TAG", ex.getMessage());
                             }
                             Log.d("TAG", "error " + throwable.getMessage());
                             registrationView.showMessage("error");
