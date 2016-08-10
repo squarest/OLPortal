@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email_dialog"
+        android:textColor="#000"
+        android:textSize="16dp" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/grey_line"
+        android:hint="Введите e-mail"
+        android:inputType="textEmailAddress"
+        android:textSize="24dp" />
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Нет, спасибо"
+        android:textColor="@color/disabled_button" />
+
+    <Button
+        android:id="@+id/sendEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Отправить"
+        android:enabled="false"
+        android:textColor="@color/background" />
+</LinearLayout>
+
+</LinearLayout>

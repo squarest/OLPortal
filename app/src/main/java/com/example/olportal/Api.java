@@ -2,9 +2,10 @@ package com.example.olportal;
 
 import java.util.Map;
 
-import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import rx.Observable;
 
 public interface Api {
@@ -16,4 +17,7 @@ public interface Api {
 
     @POST("user/")
     Observable<User> register(@Body User user);
+
+    @PUT("user/")
+    Observable<Void> sendEmail(@Body Map<String,String> email, @Header("Authorization") String token);
 }

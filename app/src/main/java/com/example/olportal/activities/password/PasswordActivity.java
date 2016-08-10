@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.example.olportal.R;
 import com.example.olportal.User;
-import com.example.olportal.activities.CongratulationsActivity;
+import com.example.olportal.activities.congratulations.CongratulationsActivity;
 import com.example.olportal.activities.registration.RegistrationActivity;
 import com.example.olportal.databinding.ActivityPasswordBinding;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -28,6 +28,7 @@ public class PasswordActivity extends AppCompatActivity implements IPasswordView
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_password);
         createToolbar();
+        createProgressDialog();
         PasswordPresenter presenter = new PasswordPresenter(this);
         if (getIntent() != null) {
             user = (User) getIntent().getSerializableExtra(RegistrationActivity.USER_EXTRA);
@@ -66,6 +67,14 @@ public class PasswordActivity extends AppCompatActivity implements IPasswordView
                 });
     }
 
+    private void createProgressDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Идет отправка");
+        progressDialog.setMessage("Пожалуйста подождите");
+        progressDialog.setIndeterminate(false);
+        progressDialog.setCancelable(false);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -74,7 +83,7 @@ public class PasswordActivity extends AppCompatActivity implements IPasswordView
 
     @Override
     public void showLoading() {
-        progressDialog = ProgressDialog.show(this, "Идет отправка", "Пожалуйста подождите", false, false);
+        progressDialog.show();
     }
 
     @Override

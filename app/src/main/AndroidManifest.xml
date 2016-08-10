@@ -23,7 +23,7 @@
         <activity
             android:name=".activities.password.PasswordActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".activities.CongratulationsActivity"></activity>
+        <activity android:name=".activities.congratulations.CongratulationsActivity"></activity>
     </application>
 
 </manifest>

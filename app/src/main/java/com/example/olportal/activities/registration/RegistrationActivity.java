@@ -31,7 +31,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     private ActivityRegistrationBinding binding;
     private String number;
     private ProgressDialog progressDialog;
-    public final static String USER_EXTRA="user";
+    public final static String USER_EXTRA = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
         RegistrationPresenter presenter = new RegistrationPresenter(this);
         setSpinner();
         createToolbar();
+        createProgressDialog();
         binding.numberButton.setOnClickListener(view -> {
             number = createNumberWithIso(binding.numberEditText);
             presenter.sendSms(number);
@@ -49,6 +50,14 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
         binding.codeButton.setOnClickListener(v -> {
             presenter.verifyNumber(number, binding.codeEditText.getText().toString());
         });
+    }
+
+    private void createProgressDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Идет отправка");
+        progressDialog.setMessage("Пожалуйста подождите");
+        progressDialog.setIndeterminate(false);
+        progressDialog.setCancelable(false);
     }
 
     private void createToolbar() {
@@ -131,7 +140,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
 
     @Override
     public void showProgress() {
-        progressDialog = ProgressDialog.show(this, "Идет отправка", "Пожалуйста подождите", false, false);
+        progressDialog.show();
     }
 
     @Override
@@ -162,7 +171,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     @Override
     public void goToNextActivity(User user) {
         Intent intent = new Intent(RegistrationActivity.this, PasswordActivity.class);
-        intent.putExtra(USER_EXTRA,user);
+        intent.putExtra(USER_EXTRA, user);
         startActivity(intent);
 
     }
