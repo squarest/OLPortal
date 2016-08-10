@@ -104,6 +104,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/background"
                         android:inputType="phone"
+                        android:singleLine="true"
                         android:textSize="20dp"
                         tools:text="(###) ###-##-##" />
                 </android.support.design.widget.TextInputLayout>
@@ -136,6 +137,7 @@
                     android:id="@+id/codeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:singleLine="true"
                     android:enabled="@{enable}"
                     android:gravity="center_vertical"
                     android:hint="@string/registration_code" />
