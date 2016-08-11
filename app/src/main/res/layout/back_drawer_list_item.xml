@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="sNetwork"
+            type="com.example.olportal.activities.drawer.SocialNetwork"/>
+        </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/back_drawer"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:avatarUrl="@{sNetwork.icon}"
+            tools:src="@drawable/ru" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:id="@+id/socialName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:text="@{sNetwork.name}"
+                tools:text="Социальная сеть" />
+
+            <TextView
+                android:id="@+id/socialUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/socialName"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                android:text="@{sNetwork.userName}"
+                tools:text="Имя пользователя" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@id/socialUsername"
+                android:background="#fff" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

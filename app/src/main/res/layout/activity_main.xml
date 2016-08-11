@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!-- The main content view -->
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!-- The navigation drawer -->
+        <FrameLayout
+            android:id="@+id/left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginLeft="-65dp">
+
+            <android.support.v4.widget.SlidingPaneLayout
+                android:id="@+id/slidingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/socialList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <fragment
+                    android:name="com.example.olportal.activities.drawer.FrontDrawerFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="80dp"
+                    tools:layout="@layout/front_drawer" />
+            </android.support.v4.widget.SlidingPaneLayout>
+        </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
+
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.olportal.activities.congratulations;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.olportal.activities.drawer.MainActivity;
 import com.example.olportal.R;
 import com.example.olportal.User;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -74,6 +76,7 @@ public class CongratulationsActivity extends AppCompatActivity implements IEmail
         });
         cancelButton.setOnClickListener(v -> {
             dialog.dismiss();
+            goToNextActivity();
         });
     }
 
@@ -89,7 +92,8 @@ public class CongratulationsActivity extends AppCompatActivity implements IEmail
 
     @Override
     public void goToNextActivity() {
-        Toast.makeText(CongratulationsActivity.this, "nextActivity", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(CongratulationsActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

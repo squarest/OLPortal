@@ -13,4 +13,7 @@
     <color name="grey_text">#797979</color>
     <color name="very_light_blue">#daf3f4</color>
     <color name="disabled_button">#add3d5</color>
+    <color name="front_drawer">#373737</color>
+    <color name="back_drawer">#262626</color>
+    <color name="drawer_toolbar">#3e3e3e</color>
 </resources>
