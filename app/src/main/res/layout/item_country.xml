@@ -19,5 +19,5 @@
         android:layout_margin="2dp"
         android:layout_weight="2"
         android:scaleType="centerInside"
-        android:src="@drawable/arrow" />
+        android:src="@drawable/arrow_down_blue" />
 </LinearLayout>

@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 
 public class MyBindingAdapter {
 
+    //лого соцсети
     @BindingAdapter("avatarUrl")
     public static void setAvatarUrl(ImageView avatar, String avatarUrl) {
         Picasso.with(avatar.getContext())

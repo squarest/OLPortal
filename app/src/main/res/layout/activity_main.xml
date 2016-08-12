@@ -26,19 +26,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
+                <!--список соцсетей-->
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/socialList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-                <fragment
-                    android:name="com.example.olportal.activities.drawer.FrontDrawerFragment"
+                <!--вложенное меню-->
+                <ExpandableListView
+                    android:id="@+id/expandableListView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="80dp"
-                    tools:layout="@layout/front_drawer" />
+                    android:background="@color/front_drawer" />
+
             </android.support.v4.widget.SlidingPaneLayout>
         </FrameLayout>
     </android.support.v4.widget.DrawerLayout>
