@@ -2,17 +2,17 @@ package com.example.olportal.activities.drawer;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.olportal.R;
 
@@ -25,13 +25,18 @@ public class MainActivity extends AppCompatActivity {
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
     private HashMap<String, List<Integer>> listImageId;
+    private FloatingActionButton floatingButton;
+    private TextView addButtonCollapsed;
+    private TextView addButtonExpanded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        floatingButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingButton.hide();
         createDoubleDrawer();
-        createRecyclerView();
+        createListView();
         createExpandableListView();
 
 
@@ -48,40 +53,47 @@ public class MainActivity extends AppCompatActivity {
         expListView.setGroupIndicator(null);
     }
 
-    private void createRecyclerView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.socialList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(itemAnimator);
-        SocialRecyclerViewAdapter adapter = new SocialRecyclerViewAdapter(populateList());
-        recyclerView.setAdapter(adapter);
+    private void createListView() {
+        ListView listView = (ListView) findViewById(R.id.socialList);
+        View footer = getLayoutInflater().inflate(R.layout.social_list_footer, null);
+        listView.addFooterView(footer);
+        addButtonCollapsed = (TextView) footer.findViewById(R.id.add_button_collapsed);
+        addButtonExpanded = (TextView) footer.findViewById(R.id.add_button_expanded);
+        addButtonExpanded.setAlpha(0f);
+        SocialListViewAdapter adapter = new SocialListViewAdapter(this, populateList());
+        listView.setAdapter(adapter);
     }
 
     private void createDoubleDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         SlidingPaneLayout slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.slidingLayout);
         slidingPaneLayout.setSliderFadeColor(getResources().getColor(R.color.front_drawer));
-        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+        slidingPaneLayout.setPanelSlideListener(new SlidingPaneLayout.PanelSlideListener() {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-
+            public void onPanelSlide(View panel, float slideOffset) {
+                if (slideOffset > 0.8f) {
+                    floatingButton.show();
+                } else {
+                    floatingButton.hide();
+                }
+                float fade = 1 - slideOffset * 3;
+                if (fade >= 0) addButtonCollapsed.setAlpha(fade);
+                else addButtonCollapsed.setAlpha(0f);
+                addButtonCollapsed.setRotation(slideOffset * 3 * 360);
+                addButtonCollapsed.setTranslationX(slideOffset * drawerLayout.getWidth() / 2);
+                addButtonExpanded.setAlpha(slideOffset);
             }
 
             @Override
-            public void onDrawerOpened(View drawerView) {
-                //запрещаем скролинг дровера после открытия
+            public void onPanelOpened(View panel) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
-            }
 
-            @Override
-            public void onDrawerClosed(View drawerView) {
 
             }
 
             @Override
-            public void onDrawerStateChanged(int newState) {
+            public void onPanelClosed(View panel) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
             }
         });
@@ -148,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<SocialNetwork> populateList() {
         List<SocialNetwork> socialNetworks = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 4; i++) {
             SocialNetwork socialNetwork = new SocialNetwork();
             socialNetwork.icon = "https://cdn2.iconfinder.com/data/icons/social-flat-buttons-3/512/vkontakte-256.png";
             socialNetwork.name = "Вконтакте";

@@ -13,12 +13,14 @@
         android:layout_height="wrap_content"
         android:background="@color/back_drawer"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:paddingLeft="15dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             app:avatarUrl="@{sNetwork.icon}"
             tools:src="@drawable/ru" />
 
