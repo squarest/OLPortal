@@ -54,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createListView() {
-        ListView listView = (ListView) findViewById(R.id.socialList);
-        View footer = getLayoutInflater().inflate(R.layout.social_list_footer, null);
-        listView.addFooterView(footer);
-        addButtonCollapsed = (TextView) footer.findViewById(R.id.add_button_collapsed);
-        addButtonExpanded = (TextView) footer.findViewById(R.id.add_button_expanded);
-        addButtonExpanded.setAlpha(0f);
-        SocialListViewAdapter adapter = new SocialListViewAdapter(this, populateList());
-        listView.setAdapter(adapter);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.socialList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(itemAnimator);
+        adapter = new SocialRecyclerViewAdapter(this, populateList());
+        recyclerView.setAdapter(adapter);
     }
 
     private void createDoubleDrawer() {
