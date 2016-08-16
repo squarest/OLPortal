@@ -1,5 +1,6 @@
 package com.example.olportal.activities.drawer;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,12 +8,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.olportal.R;
 
@@ -26,15 +28,13 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String, List<String>> listDataChild;
     private HashMap<String, List<Integer>> listImageId;
     private FloatingActionButton floatingButton;
-    private TextView addButtonCollapsed;
-    private TextView addButtonExpanded;
+    private SocialRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        floatingButton = (FloatingActionButton) findViewById(R.id.fab);
-        floatingButton.hide();
+
         createDoubleDrawer();
         createListView();
         createExpandableListView();
@@ -62,12 +62,38 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(itemAnimator);
         adapter = new SocialRecyclerViewAdapter(this, populateList());
         recyclerView.setAdapter(adapter);
+        createFloatingButton();
+
+    }
+
+    private void createFloatingButton() {
+
+        floatingButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingButton.hide();
+        floatingButton.setOnClickListener(v ->
+        {
+            if (!adapter.editFlag) {
+                adapter.editFlag = true;
+                floatingButton.setAlpha(0.3f);
+                floatingButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.background)));
+                floatingButton.setImageDrawable(getResources().getDrawable(R.drawable.ok_ic));
+                floatingButton.animate().alpha(1f);
+            } else {
+                adapter.editFlag = false;
+                floatingButton.setAlpha(0.3f);
+                floatingButton.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+                floatingButton.setImageDrawable(getResources().getDrawable(R.drawable.edit_ic));
+                floatingButton.animate().alpha(1f);
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 
     private void createDoubleDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         SlidingPaneLayout slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.slidingLayout);
         slidingPaneLayout.setSliderFadeColor(getResources().getColor(R.color.front_drawer));
+        FloatingActionButton closePanelButton = (FloatingActionButton) findViewById(R.id.showSlidePanel);
         slidingPaneLayout.setPanelSlideListener(new SlidingPaneLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
@@ -76,26 +102,27 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     floatingButton.hide();
                 }
-                float fade = 1 - slideOffset * 3;
-                if (fade >= 0) addButtonCollapsed.setAlpha(fade);
-                else addButtonCollapsed.setAlpha(0f);
-                addButtonCollapsed.setRotation(slideOffset * 3 * 360);
-                addButtonCollapsed.setTranslationX(slideOffset * drawerLayout.getWidth() / 2);
-                addButtonExpanded.setAlpha(slideOffset);
+                if (slideOffset < 1) closePanelButton.hide();
+                adapter.slideButton(slideOffset, drawerLayout.getWidth() / 2);
             }
 
             @Override
             public void onPanelOpened(View panel) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
-
-
+                closePanelButton.show();
+                closePanelButton.animate().alpha(1f);
             }
 
             @Override
             public void onPanelClosed(View panel) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+//                adapter.editFlag = !adapter.editFlag;
+//                adapter.notifyDataSetChanged();
+
 
             }
+
+
         });
     }
 
@@ -162,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         List<SocialNetwork> socialNetworks = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             SocialNetwork socialNetwork = new SocialNetwork();
-            socialNetwork.icon = "https://cdn2.iconfinder.com/data/icons/social-flat-buttons-3/512/vkontakte-256.png";
+            socialNetwork.icon = getResources().getDrawable(R.drawable.vk_ic);
             socialNetwork.name = "Вконтакте";
             socialNetwork.userName = "+79882457845";
             socialNetworks.add(socialNetwork);

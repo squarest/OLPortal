@@ -18,11 +18,10 @@
         android:paddingTop="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/avatar"
+            android:id="@+id/socialIcon"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            app:avatarUrl="@{sNetwork.icon}"
-            tools:src="@drawable/ru" />
+            tools:src="@drawable/ru"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,6 +50,15 @@
                 android:textSize="15dp"
                 android:text="@{sNetwork.userName}"
                 tools:text="Имя пользователя" />
+            <ImageView
+                android:id="@+id/deleteSocialNetwork"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:clickable="false"
+                android:src="@drawable/delete_button"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
 
             <View
                 android:layout_width="match_parent"
@@ -58,6 +66,7 @@
                 android:layout_below="@id/socialUsername"
                 android:background="#fff" />
         </RelativeLayout>
+
 
     </LinearLayout>
 </layout>

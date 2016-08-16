@@ -4,20 +4,19 @@
     <item
         android:width="20dp"
         android:height="20dp"
-        android:gravity="center"
-        android:drawable="@drawable/add_plus"/>
+        android:drawable="@drawable/add_plus"
+        android:gravity="center" />
     <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="oval">
-            <solid android:color="@android:color/transparent"/>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
             <size
                 android:width="56dp"
-                android:height="56dp"/>
+                android:height="56dp" />
             <stroke
                 android:width="3dp"
                 android:color="@color/grey_text"
                 android:dashGap="10px"
-                android:dashWidth="30px"/>
+                android:dashWidth="30px" />
         </shape>
     </item>
 
