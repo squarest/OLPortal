@@ -1,7 +1,9 @@
 package com.example.olportal.activities.drawer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +22,10 @@ public class SocialRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     private TextView addButtonExpanded;
     public boolean editFlag = false;
     private Context context;
+    private Activity activity;
 
-    public SocialRecyclerViewAdapter(Context context, List<SocialNetwork> socialNetworks) {
+    public SocialRecyclerViewAdapter(Activity activity, Context context, List<SocialNetwork> socialNetworks) {
+        this.activity = activity;
         this.context = context;
         this.socialNetworks = socialNetworks;
     }
@@ -57,7 +61,15 @@ public class SocialRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
             super(itemView);
             TextView addButtonExpanded = (TextView) itemView.findViewById(R.id.add_button_expanded);
+            TextView addButtonCollapsed = (TextView) itemView.findViewById(R.id.add_button_collapsed);
             addButtonExpanded.setAlpha(0f);
+            TextView.OnClickListener addButtonClickListener = v -> {
+                BottomSheetDialogFragment bottomSheetDialogFragment = new SocialNetworksBottomSheetFragment();
+                bottomSheetDialogFragment.show(((MainActivity)activity).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+            };
+            addButtonCollapsed.setOnClickListener(addButtonClickListener);
+            addButtonExpanded.setOnClickListener(addButtonClickListener);
+
         }
     }
 
@@ -82,6 +94,11 @@ public class SocialRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         public void editMode(SocialNetwork socialNetwork) {
             binding.deleteSocialNetwork.setClickable(editFlag);
             binding.deleteSocialNetwork.animate().alpha(1f);
+            binding.deleteSocialNetwork.setOnClickListener(v->
+            {
+                socialNetworks.remove(getAdapterPosition());
+                notifyItemRemoved(getAdapterPosition());
+            });
             binding.socialIcon.setAlpha(0.3f);
             binding.socialIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.edit_button));
             binding.socialIcon.animate().alpha(1f);

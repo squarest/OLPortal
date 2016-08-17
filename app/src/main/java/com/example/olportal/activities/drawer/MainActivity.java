@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(itemAnimator);
-        adapter = new SocialRecyclerViewAdapter(this, populateList());
+        adapter = new SocialRecyclerViewAdapter(this, this, populateList());
         recyclerView.setAdapter(adapter);
         createFloatingButton();
 
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 4; i++) {
             SocialNetwork socialNetwork = new SocialNetwork();
             socialNetwork.icon = getResources().getDrawable(R.drawable.vk_ic);
-            socialNetwork.name = "Вконтакте";
+            socialNetwork.name = "Вконтакте " + i;
             socialNetwork.userName = "+79882457845";
             socialNetworks.add(socialNetwork);
         }

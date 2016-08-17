@@ -15,8 +15,8 @@
             <stroke
                 android:width="3dp"
                 android:color="@color/grey_text"
-                android:dashGap="10px"
-                android:dashWidth="30px" />
+                android:dashGap="4dp"
+                android:dashWidth="15dp" />
         </shape>
     </item>
 

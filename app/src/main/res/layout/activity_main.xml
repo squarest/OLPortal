@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,8 +29,9 @@
                 <!--список соцсетей-->
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/socialList"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="64dp"
                     android:background="@color/back_drawer" />
                 <!--вложенное меню-->
                 <ExpandableListView
@@ -65,4 +66,4 @@
         android:layout_marginRight="32dp"
         android:src="@drawable/drawer_floating_button"
         app:backgroundTint="#fff" />
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>
