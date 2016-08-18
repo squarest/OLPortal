@@ -24,7 +24,17 @@
             android:name=".activities.password.PasswordActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".activities.congratulations.CongratulationsActivity" />
-        <activity android:name=".activities.drawer.MainActivity"></activity>
+        <activity android:name=".activities.drawer.MainActivity" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
     </application>
 
 </manifest>

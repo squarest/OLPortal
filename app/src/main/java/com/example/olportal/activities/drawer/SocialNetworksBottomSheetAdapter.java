@@ -1,5 +1,7 @@
 package com.example.olportal.activities.drawer;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.olportal.R;
+import com.facebook.login.LoginManager;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,10 +19,13 @@ import java.util.List;
  */
 public class SocialNetworksBottomSheetAdapter extends RecyclerView.Adapter<SocialNetworksBottomSheetAdapter.ViewHolder> {
     private List<SocialNetwork> socialNetworks;
+    private Context context;
 
-    public SocialNetworksBottomSheetAdapter(List<SocialNetwork> socialNetworks) {
+    public SocialNetworksBottomSheetAdapter(Context context, List<SocialNetwork> socialNetworks) {
+        this.context = context;
         this.socialNetworks = socialNetworks;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,6 +47,7 @@ public class SocialNetworksBottomSheetAdapter extends RecyclerView.Adapter<Socia
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView icon;
+
         public ViewHolder(View itemView) {
             super(itemView);
             icon = (ImageView) itemView.findViewById(R.id.social_network_icon);
@@ -47,6 +55,11 @@ public class SocialNetworksBottomSheetAdapter extends RecyclerView.Adapter<Socia
 
         public void setItem(SocialNetwork socialNetwork) {
             icon.setImageDrawable(socialNetwork.icon);
+            icon.setOnClickListener(v -> {
+                if (getAdapterPosition() == 1) {
+                    LoginManager.getInstance().logInWithReadPermissions((Activity) context, Arrays.asList("public_profile", "email", "user_friends"));
+                }
+            });
 
         }
     }

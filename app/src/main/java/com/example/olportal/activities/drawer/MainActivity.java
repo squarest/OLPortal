@@ -12,11 +12,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.example.olportal.R;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String, List<Integer>> listImageId;
     private FloatingActionButton floatingButton;
     private SocialRecyclerViewAdapter adapter;
+    private CallbackManager callbackManager = CallbackManager.Factory.create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +48,31 @@ public class MainActivity extends AppCompatActivity {
         createListView();
         createExpandableListView();
 
+        FacebookSdk.sdkInitialize(this);
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d("tag", "facebookSuccess");
+            }
 
+            @Override
+            public void onCancel() {
+                Log.d("TAG", "cancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("TAG", "error");
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void createExpandableListView() {

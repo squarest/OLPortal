@@ -8,5 +8,6 @@
     <string name="congratulations">Поздравляем вас!</string>
     <string name="congratulations_2">Вы стали участником глобальной системы OL Portal</string>
     <string name="email_dialog">Использовать e-mail для восстановления пароля и получения обновлений</string>
+    <string name="facebook_app_id">141954776246006</string>
 
 </resources>

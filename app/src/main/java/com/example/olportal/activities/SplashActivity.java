@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.olportal.R;
-import com.example.olportal.activities.drawer.MainActivity;
+import com.example.olportal.activities.registration.RegistrationActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -29,8 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         notification.setMovementMethod(LinkMovementMethod.getInstance());
         Button signButton = (Button)findViewById(R.id.sign_button);
         signButton.setOnClickListener(view->{
-//            Intent intent = new Intent(SplashActivity.this,RegistrationActivity.class);
-            Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this,RegistrationActivity.class);
             startActivity(intent);
         });
     }
