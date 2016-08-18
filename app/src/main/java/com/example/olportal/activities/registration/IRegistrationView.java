@@ -1,6 +1,6 @@
 package com.example.olportal.activities.registration;
 
-import com.example.olportal.User;
+import com.example.olportal.model.User;
 
 /**
  * Created by kravchenko on 08/08/16.

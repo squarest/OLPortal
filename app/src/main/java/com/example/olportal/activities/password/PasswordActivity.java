@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.olportal.R;
-import com.example.olportal.User;
+import com.example.olportal.model.User;
 import com.example.olportal.activities.congratulations.CongratulationsActivity;
 import com.example.olportal.activities.registration.RegistrationActivity;
 import com.example.olportal.databinding.ActivityPasswordBinding;

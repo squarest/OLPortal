@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.olportal.R;
-import com.example.olportal.User;
+import com.example.olportal.model.User;
 import com.example.olportal.activities.password.PasswordActivity;
 import com.example.olportal.countrySpinner.Country;
 import com.example.olportal.countrySpinner.CountryAdapter;

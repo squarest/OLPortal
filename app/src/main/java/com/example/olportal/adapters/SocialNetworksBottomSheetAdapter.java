@@ -1,4 +1,4 @@
-package com.example.olportal.activities.drawer;
+package com.example.olportal.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.olportal.R;
+import com.example.olportal.model.SocialNetwork;
 import com.facebook.login.LoginManager;
 
 import java.util.Arrays;

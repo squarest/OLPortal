@@ -5,7 +5,7 @@
     <data>
         <variable
             name="sNetwork"
-            type="com.example.olportal.activities.drawer.SocialNetwork"/>
+            type="com.example.olportal.model.SocialNetwork"/>
         </data>
 
     <LinearLayout

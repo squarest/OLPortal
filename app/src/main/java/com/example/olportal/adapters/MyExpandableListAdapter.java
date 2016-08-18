@@ -1,4 +1,4 @@
-package com.example.olportal.activities.drawer;
+package com.example.olportal.adapters;
 
 /**
  * Created by kravchenko on 12/08/16.

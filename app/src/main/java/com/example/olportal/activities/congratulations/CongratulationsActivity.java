@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.olportal.activities.drawer.MainActivity;
 import com.example.olportal.R;
-import com.example.olportal.User;
+import com.example.olportal.model.User;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
 public class CongratulationsActivity extends AppCompatActivity implements IEmailSendView {

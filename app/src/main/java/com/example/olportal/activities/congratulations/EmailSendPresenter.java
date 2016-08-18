@@ -2,7 +2,7 @@ package com.example.olportal.activities.congratulations;
 
 import android.util.Log;
 
-import com.example.olportal.ConnectionToServer;
+import com.example.olportal.connectionToServer.ConnectionToServer;
 
 import java.util.HashMap;
 import java.util.Map;

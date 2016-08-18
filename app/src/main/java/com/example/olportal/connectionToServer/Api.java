@@ -1,6 +1,7 @@
-package com.example.olportal;
+package com.example.olportal.connectionToServer;
 
-import com.example.olportal.activities.drawer.FacebookRequest;
+import com.example.olportal.model.FacebookRequest;
+import com.example.olportal.model.User;
 
 import java.util.Map;
 

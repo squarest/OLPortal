@@ -1,4 +1,4 @@
-package com.example.olportal.activities.drawer;
+package com.example.olportal.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.olportal.R;
+import com.example.olportal.activities.drawer.MainActivity;
+import com.example.olportal.model.SocialNetwork;
+import com.example.olportal.activities.drawer.SocialNetworksBottomSheetFragment;
 import com.example.olportal.databinding.BackDrawerListItemBinding;
 
 import java.util.List;

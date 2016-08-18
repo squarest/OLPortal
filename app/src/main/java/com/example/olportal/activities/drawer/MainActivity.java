@@ -18,8 +18,12 @@ import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
-import com.example.olportal.ConnectionToServer;
+import com.example.olportal.connectionToServer.ConnectionToServer;
 import com.example.olportal.R;
+import com.example.olportal.adapters.MyExpandableListAdapter;
+import com.example.olportal.adapters.SocialRecyclerViewAdapter;
+import com.example.olportal.model.FacebookRequest;
+import com.example.olportal.model.SocialNetwork;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;

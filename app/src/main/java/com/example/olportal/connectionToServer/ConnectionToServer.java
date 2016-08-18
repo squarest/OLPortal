@@ -1,4 +1,4 @@
-package com.example.olportal;
+package com.example.olportal.connectionToServer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

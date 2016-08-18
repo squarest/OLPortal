@@ -2,8 +2,8 @@ package com.example.olportal.activities.registration;
 
 import android.util.Log;
 
-import com.example.olportal.ConnectionToServer;
-import com.example.olportal.User;
+import com.example.olportal.connectionToServer.ConnectionToServer;
+import com.example.olportal.model.User;
 
 import java.util.HashMap;
 import java.util.Map;

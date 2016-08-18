@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.olportal.R;
+import com.example.olportal.adapters.SocialNetworksBottomSheetAdapter;
+import com.example.olportal.model.SocialNetwork;
 
 import java.util.ArrayList;
 import java.util.List;

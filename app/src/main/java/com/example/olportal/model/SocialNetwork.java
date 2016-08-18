@@ -1,4 +1,4 @@
-package com.example.olportal.activities.drawer;
+package com.example.olportal.model;
 
 import android.graphics.drawable.Drawable;
 

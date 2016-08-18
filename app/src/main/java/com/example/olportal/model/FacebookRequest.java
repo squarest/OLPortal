@@ -1,4 +1,4 @@
-package com.example.olportal.activities.drawer;
+package com.example.olportal.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,11 +9,11 @@ import java.util.Set;
  */
 public class FacebookRequest {
     @SerializedName("userSocialId")
-    String userSocialId;
+    public String userSocialId;
     @SerializedName("accessToken")
-    String accessToken;
+    public String accessToken;
     @SerializedName("expires")
-    String expires;
+    public String expires;
     @SerializedName("permissions")
-    Set<String> permissions;
+    public Set<String> permissions;
 }

@@ -2,8 +2,8 @@ package com.example.olportal.activities.password;
 
 import android.util.Log;
 
-import com.example.olportal.ConnectionToServer;
-import com.example.olportal.User;
+import com.example.olportal.connectionToServer.ConnectionToServer;
+import com.example.olportal.model.User;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

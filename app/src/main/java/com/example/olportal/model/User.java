@@ -1,4 +1,4 @@
-package com.example.olportal;
+package com.example.olportal.model;
 
 import com.google.gson.annotations.SerializedName;
 
