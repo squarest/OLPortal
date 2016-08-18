@@ -53,10 +53,10 @@
         android:layout_height="wrap_content"
         android:background="@color/drawer_toolbar"
         android:orientation="horizontal"
-        android:paddingBottom="30dp"
+        android:paddingBottom="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="20dp"
-        android:paddingTop="30dp">
+        android:paddingTop="20dp">
 
         <ImageView
             android:layout_width="30dp"
@@ -102,10 +102,10 @@
         android:layout_marginTop="1dp"
         android:background="@color/drawer_toolbar"
         android:orientation="horizontal"
-        android:paddingBottom="30dp"
+        android:paddingBottom="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="20dp"
-        android:paddingTop="30dp">
+        android:paddingTop="20dp">
 
         <ImageView
             android:layout_width="30dp"
