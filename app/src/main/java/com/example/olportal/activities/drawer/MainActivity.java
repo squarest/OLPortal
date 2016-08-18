@@ -1,5 +1,6 @@
 package com.example.olportal.activities.drawer;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
+import com.example.olportal.ConnectionToServer;
 import com.example.olportal.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -29,6 +31,9 @@ import com.facebook.login.LoginResult;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -53,6 +58,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("tag", "facebookSuccess");
+                AccessToken token = AccessToken.getCurrentAccessToken();
+                FacebookRequest request = new FacebookRequest();
+                request.accessToken = token.getToken();
+                request.expires = String.valueOf(token.getExpires().getTime());
+                request.permissions = token.getPermissions();
+                request.userSocialId = token.getUserId();
+                ConnectionToServer.getInstance().addFacebook(request, "Bearer " + getIntent().getStringExtra("token"))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(a ->
+                        {
+                            Log.d("TAG", "success");
+                        }, throwable -> Log.d("error ", throwable.getMessage()));
+
+
             }
 
             @Override

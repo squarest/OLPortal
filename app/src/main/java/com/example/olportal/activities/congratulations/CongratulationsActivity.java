@@ -93,6 +93,7 @@ public class CongratulationsActivity extends AppCompatActivity implements IEmail
     @Override
     public void goToNextActivity() {
         Intent intent = new Intent(CongratulationsActivity.this, MainActivity.class);
+        intent.putExtra("token", user.accessToken);
         startActivity(intent);
     }
 

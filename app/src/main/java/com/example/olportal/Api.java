@@ -1,5 +1,7 @@
 package com.example.olportal;
 
+import com.example.olportal.activities.drawer.FacebookRequest;
+
 import java.util.Map;
 
 import retrofit2.http.Body;
@@ -20,4 +22,7 @@ public interface Api {
 
     @PUT("user/")
     Observable<Void> sendEmail(@Body Map<String,String> email, @Header("Authorization") String token);
+
+    @POST("user/social/facebook")
+    Observable<Void> addFacebook(@Body FacebookRequest request, @Header("Authorization") String token);
 }

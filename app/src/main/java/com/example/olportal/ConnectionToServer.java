@@ -8,7 +8,7 @@ public class ConnectionToServer{
     public static synchronized Api getInstance() {
         if (connection == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://olportal.herokuapp.com/")
+                    .baseUrl("http://192.168.10.126:3000/")
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
