@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 request.expires = String.valueOf(token.getExpires().getTime());
                 request.permissions = token.getPermissions();
                 request.userSocialId = token.getUserId();
-                ConnectionToServer.getInstance().addFacebook(request, "Bearer " + getIntent().getStringExtra("token"))
+                ConnectionToServer.createConnection(MainActivity.this).addFacebook(request)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(a ->

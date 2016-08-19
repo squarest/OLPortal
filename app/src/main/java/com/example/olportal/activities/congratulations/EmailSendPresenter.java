@@ -1,5 +1,6 @@
 package com.example.olportal.activities.congratulations;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.olportal.connectionToServer.ConnectionToServer;
@@ -14,7 +15,7 @@ import rx.schedulers.Schedulers;
  * Created by kravchenko on 10/08/16.
  */
 public class EmailSendPresenter implements IEmailSendPresenter {
-    IEmailSendView emailSendView;
+    private IEmailSendView emailSendView;
 
     public EmailSendPresenter(IEmailSendView emailSendView) {
         this.emailSendView = emailSendView;
@@ -24,7 +25,7 @@ public class EmailSendPresenter implements IEmailSendPresenter {
     public void sendButtonClicked(String email, String token) {
         Map<String, String> emailMap = new HashMap<>();
         emailMap.put("email", email);
-        ConnectionToServer.getInstance().sendEmail(emailMap, "Bearer " + token)
+        ConnectionToServer.createConnection((Context) emailSendView).sendEmail(emailMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(() -> emailSendView.showLoading())

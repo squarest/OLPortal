@@ -27,7 +27,7 @@ public class RegistrationPresenter implements IRegistrationPresenter {
         registrationView.showProgress();
         Map<String, String> map = new HashMap<>();
         map.put("phone", number);
-        ConnectionToServer.getInstance().smsSend(map)
+        ConnectionToServer.createConnection().smsSend(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnTerminate(() -> registrationView.hideProgress())
@@ -58,7 +58,7 @@ public class RegistrationPresenter implements IRegistrationPresenter {
         Map<String, String> codeMap = new HashMap<>();
         codeMap.put("phone", number);
         codeMap.put("code", code);
-        ConnectionToServer.getInstance().smsVerify(codeMap)
+        ConnectionToServer.createConnection().smsVerify(codeMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnTerminate(registrationView::hideProgress)

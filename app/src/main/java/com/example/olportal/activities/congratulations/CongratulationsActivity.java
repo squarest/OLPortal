@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.olportal.SharedPreferencesHelper;
 import com.example.olportal.activities.drawer.MainActivity;
 import com.example.olportal.R;
 import com.example.olportal.model.User;
@@ -93,7 +94,8 @@ public class CongratulationsActivity extends AppCompatActivity implements IEmail
     @Override
     public void goToNextActivity() {
         Intent intent = new Intent(CongratulationsActivity.this, MainActivity.class);
-        intent.putExtra("token", user.accessToken);
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(this.getSharedPreferences(SharedPreferencesHelper.USER_PREFERENCES, MODE_PRIVATE));
+        sharedPreferencesHelper.putString(SharedPreferencesHelper.ACCESS_TOKEN, user.accessToken);
         startActivity(intent);
     }
 

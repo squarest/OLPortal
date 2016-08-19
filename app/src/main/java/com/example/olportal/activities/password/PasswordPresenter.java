@@ -20,7 +20,7 @@ public class PasswordPresenter implements IPasswordPresenter {
 
     @Override
     public void sendButtonClicked(User user) {
-        ConnectionToServer.getInstance().register(user)
+        ConnectionToServer.createConnection().register(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(() -> passwordView.showLoading())
